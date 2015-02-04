@@ -1,24 +1,24 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.core.urlresolvers import reverse
 from .forms import UploadFileForm
-from .models import File
+from uploader import upload_file
 
 
 def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            f = request.FILES['file']
-            instance = File(file=f)
-            handle_uploaded_file(instance)
-            return HttpResponseRedirect('/success/url/')
+            new_file = upload_file(request.FILES['file'])
+            context = {'form': form, 'link': new_file.url,
+                       'message': u'File was uploaded. Please use this link to access it'}
+            return HttpResponseRedirect(reverse('upload'))
     else:
         form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+        context = {'form': form}
+    return render(request, 'upload.html', context)
 
 
-def handle_uploaded_file(f):
-    with open('/tmp/%s' % f.file.name, 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-        f.save()
+def storage(request, token):
+    if request.method == 'GET':
+        pass

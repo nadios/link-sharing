@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION;TYPE=WORK:3.0
+FN:Brian Jordan
+N:Brian Jordan;;;;
+PROFILE:VCARD
+ADR:;;P.O. Box 82315;Somerville;MA;02144;USA
+EMAIL:bcjordan@gmail.com
+ORG:Coding for Interviews
+URL:http://codingforinterviews.com
+END:VCARD

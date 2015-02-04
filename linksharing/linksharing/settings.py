@@ -74,8 +74,6 @@ DATABASES = {
     }
 }
 
-DEFAULT_INDEX_TABLESPACE = 'db_tablespace'
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
