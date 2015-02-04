@@ -24,7 +24,7 @@ class File(models.Model):
     path = models.CharField(max_length=200)
     name = models.CharField(max_length=50)
     created = models.DateTimeField('Creation date', default=created)
-    file = models.FileField(upload_to='documents/%Y/%m/%d')
+    # file = models.FileField(upload_to='documents/%Y/%m/%d')
     token = models.ForeignKey(Token)
 
     def __unicode__(self):
