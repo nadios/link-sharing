@@ -1,0 +1,5 @@
+Django==1.7.4
+#pip install git+https://github.com/django-nonrel/mongodb-engine
+django-mongodb-engine==0.5.2
+djangotoolbox==1.6.2
+pymongo==2.8
