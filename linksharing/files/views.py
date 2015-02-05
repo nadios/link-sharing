@@ -1,6 +1,6 @@
 import datetime
 
-from django.http import HttpResponse, Http404, HttpResponseNotAllowed
+from django.http import HttpResponse, StreamingHttpResponse, Http404, HttpResponseNotAllowed
 from django.shortcuts import render
 
 from .forms import UploadFileForm
@@ -42,6 +42,10 @@ def storage(request, token_key):
             with open(download_file(token_key, file), 'r') as path:
                 response = HttpResponse(content=path.read())
                 response['Content-Disposition'] = 'attachment; filename=%s' % file.name
+
+                # response = StreamingHttpResponse((writer.writerow(row) for row in rows),
+                #                                  content_type="text/csv")
+                # response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
                 return response
         except:
             raise Http404("File does not exist")

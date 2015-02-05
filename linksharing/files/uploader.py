@@ -1,7 +1,11 @@
+import logging
+import os
+
 from .models import File
+
 from token import generate_token
 from file_encryption import encrypt_file, decrypt_file
-import logging
+import settings
 
 logger = logging.getLogger(__name__)
 
@@ -17,10 +21,14 @@ def upload_file(file):
 
     """
     try:
+
         token = generate_token()
-        filepath = 'data/%s.enc' % token.key
+        directory = getattr(settings, 'DATA_FOLDER', 'data')
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        filepath = '%s/%s.enc' % (directory, token.key)
         new_file = File(name=file.name, token=token, path=filepath,
-                        url="/storage/%s" % token.key)
+                        url="%s/storage/%s" % (getattr(settings, 'DOMAIN'), token.key))
         encrypt_file(file, token.key, filepath)
         new_file.save()
         return new_file

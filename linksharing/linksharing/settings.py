@@ -87,8 +87,7 @@ USE_L10N = True
 
 USE_TZ = False
 
-DOMAIN = "http://127.0.0.1:8000/"
-
+DOMAIN = "http://127.0.0.1:8000"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
