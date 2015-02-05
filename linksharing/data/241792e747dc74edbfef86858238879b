@@ -1,0 +1,15 @@
+{
+	"type": "breaking_news_marquee",
+	"action": "save",
+    "externalSource": "TodayCMS",
+    "externalId": "23",
+	"entry": {
+		"headline_visible": 1,
+		"marquee_type": "breaking_news",
+		"headline": "<p>Breaking <a href=\"http:\/\/www.today.com\/\">News<\/a><\/p>",
+		"title": "Site Wide Marquee",
+		"nid": "23",
+		"type": "breaking_news_marquee",
+		"revision_timestamp": 1416579301
+	}
+}
