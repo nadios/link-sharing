@@ -68,20 +68,13 @@ WSGI_APPLICATION = 'linksharing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mydb', # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
+        'NAME': 'mydb',
         'USER': 'myuser',
         'PASSWORD': 'password',
-        # 'HOST': 'localhost',
+        'HOST': 'localhost',
         # # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
-        # 'PORT': '', # Set to empty string for default.
+        'PORT': '', # Set to empty string for default.
     }
-    # 'default': {
-    #     # 'ENGINE': 'django_mongodb_engine',
-    #     # 'NAME': 'link_warehouse',
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
 }
 
 # Internationalization
@@ -105,9 +98,12 @@ DOMAIN = "http://127.0.0.1:8000"
 STATIC_URL = '/static/'
 
 # Parse database configuration from $DATABASE_URL
-# import dj_database_url
-#
-# DATABASES['default'] = dj_database_url.config()
+import dj_database_url
+
+DATABASES['default'] = dj_database_url.parse('postgres://myuser:password@localhost:5432/mydb')
+
+# Enable Connection Pooling
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 import logging
 
