@@ -8,21 +8,21 @@
 
 ## To run the application follow the steps:
 1. Clone git repo into your local folder:
-* `git clone https://github.com/nadios/link-sharing.git`
+`git clone https://github.com/nadios/link-sharing.git`
 
 2. Move on to *linksharing* folder:
-* `cd linksharing`
+`cd linksharing`
 
 3. Install required python libs:
-* `pip install requirements.pip`
+`pip install requirements.pip`
 
 4. Setup database by running the migrations:
-* `python manage.py migrate`
+`python manage.py migrate`
 
 4. The application is running on django test server, so to run it sumply run the command:
-* `python manage.py runserver`
+`python manage.py runserver`
 or in case your local port 8000 is already used, try next command changing `8080` to any available port number:
-* `python manage.py runserver 8080`
+`python manage.py runserver 8080`
 
 5. That is it! Now try [http://localhost:8000/upload](http://localhost:8000/upload) URL in your browser.
 
