@@ -68,10 +68,10 @@ WSGI_APPLICATION = 'linksharing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         # # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
         'PORT': '', # Set to empty string for default.
     }
