@@ -10,7 +10,7 @@ import settings
 logger = logging.getLogger(__name__)
 
 
-def upload_file(file):
+def upload_file(file, domain = None):
     """
         Uploads file on server, stores encrypted version
 
@@ -21,14 +21,15 @@ def upload_file(file):
 
     """
     try:
-
         token = generate_token()
         directory = getattr(settings, 'DATA_FOLDER', 'data')
         if not os.path.exists(directory):
             os.makedirs(directory)
         filepath = '%s/%s.enc' % (directory, token.key)
+        if not domain:
+            domain = getattr(settings, 'DOMAIN')
         new_file = File(name=file.name, token=token, path=filepath,
-                        url="%s/storage/%s" % (getattr(settings, 'DOMAIN'), token.key))
+                        url="%s/storage/%s" % (domain, token.key))
         encrypt_file(file, token.key, filepath)
         new_file.save()
         return new_file

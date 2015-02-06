@@ -1,4 +1,3 @@
-import os
 import random
 import struct
 
@@ -14,10 +13,10 @@ def encrypt_file(source, key, destination=None, chunksize=64 * 1024):
             either 16, 24 or 32 bytes long. Longer keys
             are more secure.
 
-        in_filename:
+        source:
             Name of the input file
 
-        out_filename:
+        destination:
             If None, '<in_filename>.enc' will be used
 
         chunksize:
@@ -41,7 +40,7 @@ def encrypt_file(source, key, destination=None, chunksize=64 * 1024):
             outfile.write(encryptor.encrypt(chunk))
 
 
-def decrypt_file(key, source, destination=None, chunksize=24 * 1024):
+def decrypt_file(key, source, chunksize=24 * 1024):
     """ Decrypts a file using AES (CBC mode) with the
         given key.
 
@@ -50,11 +49,8 @@ def decrypt_file(key, source, destination=None, chunksize=24 * 1024):
             either 16, 24 or 32 bytes long. Longer keys
             are more secure.
 
-        in_filename:
+        source:
             Name of the input file
-
-        out_filename:
-            If None, '<in_filename>.enc' will be used
 
         chunksize:
             Sets the size of the chunk which the function
@@ -63,17 +59,12 @@ def decrypt_file(key, source, destination=None, chunksize=24 * 1024):
 
         Returns the descrypted file.
     """
-    if not destination:
-        destination = os.path.splitext(source)[0]
     with open(source, 'rb') as infile:
-        origsize = struct.unpack('<Q', infile.read(struct.calcsize('Q')))[0]
+        struct.unpack('<Q', infile.read(struct.calcsize('Q')))
         iv = infile.read(16)
         decryptor = AES.new(key, AES.MODE_CBC, iv)
-        with open(destination, 'wb') as outfile:
-            while True:
-                chunk = infile.read(chunksize)
-                if len(chunk) == 0:
-                    break
-                outfile.write(decryptor.decrypt(chunk))
-            outfile.truncate(origsize)
-    return destination
+        while True:
+            chunk = infile.read(chunksize)
+            if len(chunk) == 0:
+                break
+            yield decryptor.decrypt(chunk)
