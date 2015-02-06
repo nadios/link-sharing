@@ -38,8 +38,8 @@ In the future we should apply the mechanism of cleaning the redundant files and 
 I suggest using some CRON-trigger to accomplish, let's say once a day, the file and token cleaning.
 We could use [Celery](http://www.celeryproject.org/) for that.
 3. We should apply PyLint code quality checking to support python coding standards
-4. We should move the application from the test Django server to some production solution, i.e. NGINX, Heroku
-5. We should switch to production database, SQLite is also only for test purposes. So, we should decide what is best option for that MySQL, PostgreSQL, or maybe noSQL solution like MongoDB
+4. To add more scalability to the application we could setup web-server to run on multiple workers. So, we will be able to perform multiple requests at once
+5. We should decide what is best option for the data storage, whether it would stay PostgreSQL, or maybe try noSQL solution like MongoDB
 6. The better logging of errors and error pages should be provided. So we should inform user each time when some technical problems occured and the file could not be uploaded or accessed
 7. The better UX-design should also be designed and implemented, it should be responsive and maybe we should use (Bootstrap)[http://getbootstrap.com/] to handle the look and responsiveness
 
@@ -47,3 +47,4 @@ We could use [Celery](http://www.celeryproject.org/) for that.
 1. We should pay more attention to app security, possibly we should transfer it onto HTTPS, which could be done once it is transferred from django test server
 2. Also we should limit the file types that user could store, the system could be less vulnarable if we forbid uploading `javascript` files which could basically be executed and the user info could be stolen
 3. We should add user membership functionality. So user could be able to register and manage the uploaded files
+4. Allow user to upload multiple files at once and show the progress bar of file uploading
