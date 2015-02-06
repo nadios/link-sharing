@@ -1,6 +1,6 @@
 # link-sharing
+Link-sharing is a simple secure temporary file sharing service.
 
-## Link-sharing is a simple secure temporary file sharing service.
 ## The service meets the following requirements:
 * Upload file form returns an HTTP link that can be used to retrieve the file contents.
 * The files are stored encrypted
@@ -36,7 +36,7 @@ In case everything went OK, you will see success screen containing the link for 
 2. Right now we just test the time of file/token expiration and return the file if it's not yet expired.
 In the future we should apply the mechanism of cleaning the redundant files and tokens from the file system and db.
 I suggest using some CRON-trigger to accomplish, let's say once a day, the file and token cleaning.
-We could use [Celery for that](http://www.celeryproject.org/)
+We could use [Celery](http://www.celeryproject.org/) for that.
 3. We should apply PyLint code quality checking to support python coding standards
 4. We should move the application from the test Django server to some production solution, i.e. NGINX, Heroku
 5. We should switch to production database, SQLite is also only for test purposes. So, we should decide what is best option for that MySQL, PostgreSQL, or maybe noSQL solution like MongoDB
