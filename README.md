@@ -14,7 +14,7 @@ Link-sharing is a simple secure temporary file sharing service.
 `cd linksharing`
 
 3. Install required python libs:
-`pip install -r requirements.pip`
+`pip install -r requirements.txt`
 
 4. Setup database by running the migrations:
 `python manage.py migrate`
