@@ -1,5 +1,6 @@
 import datetime
 import logging
+import urllib
 
 from django.http import StreamingHttpResponse, Http404, HttpResponseNotAllowed
 from django.shortcuts import render
@@ -43,10 +44,10 @@ def storage(request, token_key):
             token = Token.objects.filter(key=token_key).exclude(expires__lte=datetime.datetime.now())
             file = File.objects.get(token=token)
             response = StreamingHttpResponse(download_file(token_key, file))
-            response['Content-Disposition'] = 'attachment; filename=%s' % file.name
+            response['Content-Disposition'] = 'attachment; filename=%s' % urllib.quote_plus(file.name)
             return response
         except Exception as e:
-            logger.error("Unable to decrypt file: ", e)
+            logger.error("Unable to decrypt file: %s", e)
             raise Http404("File does not exist")
     else:
         raise HttpResponseNotAllowed("Method is not allowed")

@@ -34,7 +34,7 @@ def upload_file(file, domain = None):
         new_file.save()
         return new_file
     except Exception as e:
-        logger.error("Unable to upload the file: ", e)
+        logger.error("Unable to upload the file: %s", e)
 
 
 def download_file(key, file):
@@ -53,4 +53,4 @@ def download_file(key, file):
     try:
         return decrypt_file(key, file.path)
     except Exception as e:
-        logger.error("Unable to download the file: ", e)
+        logger.error("Unable to download the file: %s", e)
