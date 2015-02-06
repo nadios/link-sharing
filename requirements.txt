@@ -1,6 +1,5 @@
 dj-database-url==0.3.0
 Django==1.7.4
-django-mongodb-engine==0.5.2
 djangotoolbox==1.6.2
 gunicorn==19.2.1
 pycrypto==2.6.1
