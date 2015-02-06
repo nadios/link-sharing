@@ -100,7 +100,7 @@ STATIC_URL = '/static/'
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.parse('postgres://myuser:password@localhost:5432/mydb')
+DATABASES['default'] = dj_database_url.config()#dj_database_url.parse('postgres://myuser:password@localhost:5432/mydb')
 
 # Enable Connection Pooling
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
