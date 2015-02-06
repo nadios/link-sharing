@@ -26,7 +26,7 @@ or in case your local port 8000 is already used, try next command changing `8080
 
 5. That is it! Now try [http://localhost:8000/upload](http://localhost:8000/upload) URL in your browser.
 
-## The application is very simple and consists of two screens:
+## The application manual:
 1. To upload a file simply click on *Choose file* link and browse your directory for any file
 2. Click *Upload* button
 In case everything went OK, you will see success screen containing the link for an uploaded file and *Upload more* button.
@@ -40,6 +40,8 @@ We could use [Celery](http://www.celeryproject.org/) for that.
 3. We should apply PyLint code quality checking to support python coding standards
 4. We should move the application from the test Django server to some production solution, i.e. NGINX, Heroku
 5. We should switch to production database, SQLite is also only for test purposes. So, we should decide what is best option for that MySQL, PostgreSQL, or maybe noSQL solution like MongoDB
+6. The better logging of errors and error pages should be provided. So we should inform user each time when some technical problems occured and the file could not be uploaded or accessed
+7. The better UX-design should also be designed and implemented, it should be responsive and maybe we should use (Bootstrap)[http://getbootstrap.com/] to handle the look and responsiveness
 
 ##Improvements
 1. We should pay more attention to app security, possibly we should transfer it onto HTTPS, which could be done once it is transferred from django test server
