@@ -50,6 +50,8 @@ def download_file(key, file):
     Returns decrypted file object
 
     """
+    if not os.path.exists(file.path):
+        raise IOError("File could not be found")
     try:
         return decrypt_file(key, file.path)
     except Exception as e:

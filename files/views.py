@@ -46,6 +46,9 @@ def storage(request, token_key):
             response = StreamingHttpResponse(download_file(token_key, file))
             response['Content-Disposition'] = 'attachment; filename=%s' % urllib.quote_plus(file.name)
             return response
+        except IOError as e:
+            logger.error("Unable to find required file: %s", e)
+            raise Http404("File does not exist")
         except Exception as e:
             logger.error("Unable to decrypt file: %s", e)
             raise Http404("File does not exist")
